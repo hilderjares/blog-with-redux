@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-const INITAL_STATE = [
+const INITIAL_STATE = [
     {
         id: uuidv4(),
         name: "create react app with redux",
@@ -9,7 +9,7 @@ const INITAL_STATE = [
     },
 ];
 
-const postReducer = (state = INITAL_STATE, action) => {
+const postReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case "ADD_POST":
             return [
