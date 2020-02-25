@@ -1,27 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { addPost } from "../../actions/postActions";
 import { connect } from "react-redux";
+import { FromProvider, FormContext } from "../../contexts/FormContext";
+import PostForm from "./PostForm";
 
 function PostAdd({ addPost }) {
-    const [name, setName] = useState("");
-    const [post, setPost] = useState("");
-    const [tags, setTags] = useState([]);
-
-    const handleName = event => {
-        setName(event.target.value);
-    };
-
-    const handlePost = event => {
-        setPost(event.target.value);
-    };
-
-    const handleTags = event => {
-        let newTag = [...tags];
-        newTag.push(event.target.value);
-
-        setTags(newTag);
-    };
+    const { name, setName, post, setPost, tags, setTags } = useContext(
+        FormContext
+    );
 
     const canSubmit = () => {
         return name !== "" && post !== "" && tags.length > 0;
@@ -41,21 +28,7 @@ function PostAdd({ addPost }) {
         setTags([]);
     };
 
-    return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <input name="name" onChange={handleName} />
-                <input name="post" onChange={handlePost} />
-                <select multiple onChange={handleTags}>
-                    <option value="Js"> Js </option>
-                    <option value="React"> React </option>
-                    <option value="PHP"> PHP </option>
-                    <option value="Node"> Node </option>
-                </select>
-                <button type="submit"> Create Post </button>
-            </form>
-        </div>
-    );
+    return <PostForm action={onSubmit} />;
 }
 
 PostAdd.propTypes = {
