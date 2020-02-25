@@ -7,8 +7,7 @@ function PostItem({ id, name, tags, post }) {
         <div>
             <div> {name} </div>
             <div>
-                {" "}
-                <PostTags tags={tags} />{" "}
+                <PostTags tags={tags} />
             </div>
             <div> {post} </div>
         </div>
